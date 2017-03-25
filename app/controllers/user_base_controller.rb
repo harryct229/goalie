@@ -1,3 +1,3 @@
 class UserBaseController < ApplicationController
-  layout "application"
+  layout "user_layout"
 end
