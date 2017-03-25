@@ -6,4 +6,5 @@ class Goal < ApplicationRecord
 
   scope :active, -> { where(status: "in_progress" ) }
 
+  # add statemachine
 end

@@ -1,0 +1,20 @@
+<%= simple_form_for(@group, url: groups_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: false %>
+    <%= f.input :type, as: :boolean, label: "Is this closed group?", checked_value: "ClosedGroup", unchecked_value: "OpenGroup",
+      required: false %>
+
+    <%= f.collection_check_boxes :user_ids, User.all, :id, :email %>
+    <%= f.simple_fields_for :goal do |f_g| %>
+      <%= f_g.input :description, required: false %>
+      <%= f_g.input :target, required: false %>
+      <%= f_g.input :deadline, as: :datetime, html5: true, required: false %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

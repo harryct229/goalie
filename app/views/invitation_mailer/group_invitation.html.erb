@@ -1,0 +1,9 @@
+<h3>
+[<%= @inviter.fullname %>] would like to invite you to group [<%= @group.name %>] with goal [<%= @group.goal.description %>]
+</h3>
+
+<h3>
+  Please click
+  <%= link_to "here", confirm_group_invitation_url(@group_invitation) %>
+  to confirm
+</h3>

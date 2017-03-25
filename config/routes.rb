@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   root to: "top#index"  
@@ -7,5 +8,12 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  resources :groups, only: %i(show new edit create update)
+  resources :group_invitations, only: %i() do
+    member do
+      get "confirm"
+    end
   end
 end
