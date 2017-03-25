@@ -1,4 +1,3 @@
-require 'pry'
 class ActivitiesController < UserBaseController
   before_action :set_activity, only: [:show, :new, :edit, :update, :destroy]
 

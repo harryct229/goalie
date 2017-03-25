@@ -1,4 +1,3 @@
-require 'pry'
 class Goal < ApplicationRecord
   STATUS_OPTIONS = %w(done in_progress)
   has_many :activities, dependent: :destroy
