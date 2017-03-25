@@ -8,7 +8,7 @@
 
 users = 10.times.map do |i|
   User.create! email: "email_#{i}@example.com", fullname: "User_#{i}",
-    password: "12345678", password_confirmation: "12345678", 
+    password: "12345678", password_confirmation: "12345678",
     confirmed_at: Time.now
 end
 
@@ -33,7 +33,22 @@ users.each do |user|
 end
 
 5.times do |i|
-  group = Group.create! name: "Group_#{i}"
+  group = OpenGroup.create! name: "OpenGroup_#{i}"
+  goal = group.create_goal! deadline: Time.current + 5.days,
+    description: "#{group.name} - Description #{i}",
+    target: 10,
+    status: "in_progress",
+    current_quantity: 5
+
+  User.all[i..(i + 4)].each do |user|
+    group.user_groups.create! user: user
+    activity = user.activities.create! goal: goal, quantity: 1
+    user.comments.create! activity: activity, content: "Commento"
+  end
+end
+
+5.times do |i|
+  group = ClosedGroup.create! name: "ClosedGroup_#{i}"
   goal = group.create_goal! deadline: Time.current + 5.days,
     description: "#{group.name} - Group - Description #{i}",
     target: 10,
