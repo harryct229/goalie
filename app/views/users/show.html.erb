@@ -1,0 +1,32 @@
+
+<div class="ui top attached tabular menu">
+  <a class="item" data-tab="tab-private">First</a>
+  <a class="item" data-tab="tab-group">Second</a>
+</div>
+<div class="ui bottom attached tab segment" data-tab="tab-private">
+  <% @goals.each do |goal| %>
+    <h3> <%= goal.description %> </h3>
+    <% unless goal.target == 0 %>
+      <div class="ui teal progress" data-percent="<%= (goal.current_quantity.to_f/goal.target) * 100 %>" id="goal-<%= goal.id %>">
+        <div class="bar"> </div>
+        <div class="label" > <%= (goal.current_quantity.to_f/goal.target) * 100 %> % Earned</div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="ui bottom attached tab segment active" data-tab="tab-group">
+  <% @group.each do |group| %>
+    <h3 class="ui header"><%= group.name %> -- <%= group.goal.description %></h3> 
+    <% unless group.goal.target == 0 %>
+      <div class="ui teal progress" data-percent="<%= (group.goal.current_quantity.to_f/group.goal.target) * 100 %>" id="goal-<%= group.goal.id %>">
+        <div class="bar"> </div>
+        <div class="label" > <%= (group.goal.current_quantity.to_f/group.goal.target) * 100 %> % Earned</div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<script type="text/javascript">
+  $('.top.menu .item').tab();
+  $('.top.menu .item[data-tab="tab-private"]').click();
+  $('.ui.teal.progress').progress();
+</script>

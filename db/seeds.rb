@@ -7,13 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = 10.times.map do |i|
-  User.create! email: "email_#{i}@example.com", fullname: "User_#{i}"
+  User.create! email: "email_#{i}@example.com", fullname: "User_#{i}",
+    password: "12345678", password_confirmation: "12345678", 
+    confirmed_at: Time.now
 end
 
 users.each do |user|
   5.times do |i|
     goal = user.goals.create! deadline: Time.current + 5.days,
-      description: "#{user.fullname} - Description #{i}",
+      description: "#{user.fullname} - Private - Description #{i}",
       target: 10,
       status: "in_progress",
       current_quantity: 5
@@ -33,7 +35,7 @@ end
 5.times do |i|
   group = Group.create! name: "Group_#{i}"
   goal = group.create_goal! deadline: Time.current + 5.days,
-    description: "#{group.name} - Description #{i}",
+    description: "#{group.name} - Group - Description #{i}",
     target: 10,
     status: "in_progress",
     current_quantity: 5
