@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :goals, class_name: UserGoal.name, foreign_key: :owner_id,
     dependent: :destroy
   has_many :comments
+  has_many :activities
 
   validates :fullname, presence: true
 end

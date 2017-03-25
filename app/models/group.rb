@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   has_many :user_groups, dependent: :destroy
   has_many :users, through: :user_groups
 
-  validates :name, :goal, :users, presence: true
+  validates :name, presence: true
 
   def open?
     raise "method should be implemented in a sub-class of Group"
