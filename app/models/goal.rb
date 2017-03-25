@@ -7,4 +7,9 @@ class Goal < ApplicationRecord
   scope :active, -> { where(status: "in_progress" ) }
 
   # add statemachine
+  state_machine :status, :initial => :in_progress do
+    event :finish do
+      transition :in_progress => :done
+    end
+  end
 end

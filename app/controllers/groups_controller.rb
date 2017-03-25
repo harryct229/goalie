@@ -39,7 +39,6 @@ class GroupsController < UserBaseController
         format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
-        binding.pry
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
@@ -51,7 +50,7 @@ class GroupsController < UserBaseController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
