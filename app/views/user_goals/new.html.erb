@@ -1,0 +1,17 @@
+<div id="user-goal-form-wrapper">
+  <h3>Create new goal</h3>
+  <%= simple_form_for(@user_goal, url: user_goal_index_path(current_user)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :description, as: :text, required: false %>
+      <%= f.input :target, required: false %>
+      <%= f.input :deadline, required: false, html5: true %>
+    </div>
+
+    <div class="form-actions">
+      <%=  link_to "Back", current_user, class: "ui button" %>
+      <%= f.button :submit, "Save" %>
+    </div>
+  <% end %>
+</div>
