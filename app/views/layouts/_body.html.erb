@@ -1,14 +1,14 @@
 <div class="ui grid">
-  <div class="three wide column" style="background-color: #059d96;color: #FFFFFF;">
+  <div class="three wide column" style="background-color: #059d96;color: #FFFFFF;min-height: 700px">
     <div class="row">
       <%= image_tag("TEST.jpg", class: "ui medium circular image")%>
     </div>
     <div class="row">
       <p class="full-name">
-        Full name: 
+        Full name: <%= current_user.fullname %>
       </p>
       <p class="email">
-        Email:
+        Email: <%= current_user.email %>
       </p>
     </div>
   </div>
