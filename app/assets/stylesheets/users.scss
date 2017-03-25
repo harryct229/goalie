@@ -27,3 +27,55 @@
     margin-top: 10px;
   }
 }
+
+#app-name {
+  font-size: 20px;
+  padding: 4px;
+  margin: 0 0 0 30px;
+  h1 {
+    margin: 6px;
+    a {
+      color: $main-color;
+    }
+  }
+}
+
+#signout-link {
+  color: #222;
+  vertical-align: middle;
+  font-size: 14px;
+  margin: 18px 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.gravatar-photo {
+  border-radius: 50%;
+}
+
+#user-info-container {
+  text-align: center;
+  background-color: #121212;
+  color: #FFFFFF;
+  min-height: 700px;
+}
+
+#gravatar-wrapper {
+  margin: 0 auto;
+
+  a {
+    overflow: auto;
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+#user-details-container {
+
+  h3 {
+    text-align: center;
+  }
+}
