@@ -57,7 +57,7 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'div', class: 'ui red pointing above label error' }
   end
 
-  config.wrappers :ui_checkbox, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_checkbox, tag: 'div', class: "field ui checkbox", error_class: 'error', hint_class: 'with_hint' do |b|
     b.use :html5
     b.wrapper tag: 'div', class: 'ui checkbox' do |input|
       input.use :label_input

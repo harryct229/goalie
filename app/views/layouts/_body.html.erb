@@ -1,15 +1,10 @@
 <div class="ui grid">
-  <div class="three wide column" style="background-color: #059d96;color: #FFFFFF;min-height: 700px">
-    <div class="row">
-      <%= image_tag("TEST.jpg", class: "ui medium circular image")%>
+  <div class="three wide column" id="user-info-container">
+    <div id="gravatar-wrapper">
+      <%= gravatar_for current_user, size: 80 %>
     </div>
-    <div class="row">
-      <p class="full-name">
-        Full name: <%= current_user.fullname %>
-      </p>
-      <p class="email">
-        Email: <%= current_user.email %>
-      </p>
+    <div id="user-details-container">
+      <h3><%= current_user.fullname %></h3>
     </div>
   </div>
   <div class="thirteen wide column">

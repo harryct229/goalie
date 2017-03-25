@@ -3,8 +3,9 @@ class UsersController < UserBaseController
   # GET /users/1
   # GET /users/1.json
   def show
-    @goals = current_user.goals.active
-    @group = current_user.groups
+    user = User.find(params[:id])
+    @goals = user.goals.active
+    @group = user.groups
   end
 
  

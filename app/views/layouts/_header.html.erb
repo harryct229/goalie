@@ -1,11 +1,10 @@
-<div class="ui secondary pointing menu">
-  <div href="#" class="header item">
-    <%= image_tag("TEST.jpg", class: "logo")%>
-    Goalie
+<div class="ui secondary pointing menu" style="border-bottom: 1px solid #121212;">
+  <div href="#" class="header item" id="app-name">
+    <h1><%= link_to "GoaliE", root_path %></h1>
   </div>
   <div class="right menu">
-    <a class="ui item">
-      Logout
+    <a class="ui item" >
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, id: "signout-link" %>
     </a>
   </div>
 </div>
