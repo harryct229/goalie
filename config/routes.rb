@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root to: "top#index"  
 
-  resources :users, only: "show"
+  resources :users, only: "show" do
+    resources :user_goals, only: %i(new create), as: "goal", path: "goal"
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

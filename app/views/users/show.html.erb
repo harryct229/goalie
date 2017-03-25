@@ -4,6 +4,9 @@
   <a class="item" data-tab="tab-group">Second</a>
 </div>
 <div class="ui bottom attached tab segment" data-tab="tab-private">
+  <header>
+    <%= link_to "New goal", new_user_goal_path(current_user), class: "ui primary button" %>
+  </header>
   <% @goals.each do |goal| %>
     <h3> <%= goal.description %> </h3>
     <% unless goal.target == 0 %>
