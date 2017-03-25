@@ -1,16 +1,17 @@
-<main>
+<main id="top-page-wrapper">
   <section id="intro-container">
     <article id="intro-main">
-      <div>
+      <div id="intro-content">
         <h1><%= t("app.description") %></h1>
-        <button>Getting started</button>
-      </div>
-    </article>
-    <article>
-      <div>
-        <h4>What we provide</h4>
         <p><%= t("app.service_description") %></p>
+        <% if user_signed_in? %>
+          <%= link_to "Go to my page", current_user, class: "ui primary button", id: "go-to-user-page"%>
+        <% else %>
+          <div id="devise-form-links">
+            <%= link_to "Sign in", new_user_session_path, class: "ui button" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "ui primary button" %>
+          </div>
+        <% end %>
       </div>
-    </article>
   </section>
 </main>

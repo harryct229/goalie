@@ -1,0 +1,29 @@
+@import "colors";
+
+.devise-form-wrapper {
+  width: 400px;
+  margin: 40px auto 0 auto;
+
+  h2 {
+    text-align: center;
+    font-size: 46px;
+    color: $main-color;
+
+    a {
+      color: $main-color;
+    }
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .form .submit {
+    margin-top: 10px;
+  }
+
+  & > a {
+    display: block;
+    margin-top: 10px;
+  }
+}
