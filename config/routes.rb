@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "top#index"  
-
   resources :users, only: "show" do
-    resources :user_goals, only: %i(new create), as: "goal", path: "goal"
+    resources :user_goals, as: "goal", path: "goal" do
+      resources :activities
+    end
   end
-
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

@@ -8,6 +8,10 @@ class Group < ApplicationRecord
   validates :name, presence: true
   accepts_nested_attributes_for :goal
 
+  def owner_name
+  	self.name
+  end
+
   def open?
     raise "method should be implemented in a sub-class of Group"
   end

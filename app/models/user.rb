@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :activities
 
   validates :fullname, presence: true
+  def owner_name
+    self.fullname
+  end
 end
