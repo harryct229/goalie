@@ -24,7 +24,7 @@ class ActivitiesController < UserBaseController
   # POST /activities
   # POST /activities.json
   def create
-    if params[:goal_id].blank? || params[:activity][:quantity].blank?
+    if params[:goal_id].blank?
         return redirect_to(user_path current_user)
     end
     @activity = Activity.new
@@ -36,8 +36,8 @@ class ActivitiesController < UserBaseController
         format.html { redirect_to "#{ user_goal_activities_path(current_user) }/#{@activity.id}", notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
+        @goal = Goal.find(params[:goal_id])  
         format.html { render :new }
-        format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
   end
