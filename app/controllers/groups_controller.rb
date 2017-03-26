@@ -7,6 +7,17 @@ class GroupsController < UserBaseController
     @groups = Group.all
   end
 
+  def show_open_groups
+    @open_groups = params["search"].present? ? OpenGroup.search_group(params["search"]): OpenGroup.all
+  end
+
+  def add_to_group
+    group = OpenGroup.find(params["id"])
+    group.users << current_user
+    group.save
+    render json: nil, status: 200
+  end
+
   # GET /groups/1
   # GET /groups/1.json
   def show
@@ -50,6 +61,12 @@ class GroupsController < UserBaseController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        user_ids = params[:group][:user_ids].reject(&:blank?)
+        user_ids.each do |user_id|
+          group_invitation = GroupInvitation.create! group: @group,
+            user_id: user_id, inviter: current_user
+          group_invitation.send_invitation
+        end
         format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else

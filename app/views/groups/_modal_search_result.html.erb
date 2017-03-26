@@ -1,0 +1,24 @@
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Matching groups
+  </div>
+  <div class="image content">
+    <div class="ui items">
+      <% @open_groups.each do |group| %>
+        <div class="item">
+          <div class="middle aligned content">
+            <div class="header">
+              <%= group.name %>              
+            </div>
+            <div class="extra">
+              <div class="ui right floated button">
+                Action
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

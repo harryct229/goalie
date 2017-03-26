@@ -8,16 +8,18 @@
   <header>
     <%= link_to "New goal", new_user_goal_path(current_user), class: "ui primary button" %>
   </header>
-  <dir class="ui grid">
+  <div class="ui grid">
     <% @goals.each do |goal| %>
       <div class="fourteen wide column">
-        <h3> <%= goal.description %> </h3>
-        <% unless goal.target == 0 %>
-          <% percent = goal.current_quantity.to_f/goal.target %>
-          <div class="ui teal progress" data-percent="<%= percent < 1 ? percent * 100 : 100 %>" id="goal-<%= goal.id %>">
-            <div class="bar"> </div>
-            <div class="label" > <%= percent * 100 %> % Earned</div>
-          </div>
+        <%= link_to goal_path(goal) do %>
+          <h3> <%= goal.description %> </h3>
+          <% unless goal.target == 0 %>
+            <% percent = goal.current_quantity.to_f/goal.target %>
+            <div class="ui teal progress" data-percent="<%= percent < 1 ? percent * 100 : 100 %>" id="goal-<%= goal.id %>">
+              <div class="bar"> </div>
+              <div class="label" > <%= percent * 100 %> % Earned</div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <% if @is_my_page %>
@@ -26,19 +28,32 @@
         </dir>
       <% end %>
     <% end %>
-  </dir>
+  </div>
 </div>
 <div class="ui bottom attached tab segment active" data-tab="tab-group">
-  <dir class="ui grid">
+  <header style="margin-bottom: 20px;">
+    <%= link_to "New group", new_group_path, class: "ui primary button" %>
+    <div id="group-search-wrapper">
+      <form action="/open_groups" method="GET">
+        <div class="ui input icon">
+          <input type="text" name="search" placeholder="Search open group" id="group-search-input">
+          <i class="search icon"></i>
+        </div>
+      </form>
+    </div>
+  </header>
+  <div class="ui grid">
     <% @group.each do |group| %>
       <div class="fourteen wide column">
-        <h3 class="ui header"><%= group.name %> -- <%= group.goal.description %></h3> 
-        <% unless group.goal.target == 0 %>
-          <% percent = group.goal.current_quantity.to_f/group.goal.target %>
-          <div class="ui teal progress" data-percent="<%= percent < 1 ? percent * 100 : 100 %>" id="goal-<%= group.goal.id %>">
-            <div class="bar"> </div>
-            <div class="label" > <%= percent * 100 %> % Earned</div>
-          </div>
+        <%= link_to goal_path(group.goal) do %>
+          <h3 class="ui header"><%= group.name %> -- <%= group.goal.description %></h3>
+          <% unless group.goal.target == 0 %>
+            <% percent = group.goal.current_quantity.to_f/group.goal.target %>
+            <div class="ui teal progress" data-percent="<%= percent < 1 ? percent * 100 : 100 %>" id="goal-<%= group.goal.id %>">
+              <div class="bar"> </div>
+              <div class="label" > <%= percent * 100 %> % Earned</div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <% if @is_my_page %>
@@ -65,8 +80,3 @@
     <% end %>
   <% end %>
 </div>
-<script type="text/javascript">
-  $('.top.menu .item').tab();
-  $('.top.menu .item[data-tab="tab-private"]').click();
-  $('.ui.teal.progress').progress();
-</script>
