@@ -1,7 +1,8 @@
 
 <div class="ui top attached tabular menu">
-  <a class="item" data-tab="tab-private">Personal</a>
-  <a class="item" data-tab="tab-group">Group</a>
+  <a class="item" data-tab="tab-private">Private_Goals</a>
+  <a class="item" data-tab="tab-group">Group_Goals</a>
+  <a class="item" data-tab="tab-lazy">Lazy_Goals</a>
 </div>
 <div class="ui bottom attached tab segment" data-tab="tab-private">
   <header>
@@ -21,9 +22,11 @@
           <% end %>
         <% end %>
       </div>
-      <div class="two wide column">
-        <%= link_to "New activity", "#{ current_user.id }/goal/#{ goal.id }/activities/new", class: "ui positive basic button" %>
-      </div>
+      <% if @is_my_page %>
+        <dir class="two wide column">
+          <%= link_to "New activity", "#{ current_user.id }/goal/#{ goal.id }/activities/new", class: "ui positive basic button" %>
+        </dir>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -53,9 +56,28 @@
           <% end %>
         <% end %>
       </div>
-      <div class="two wide column">
-        <%= link_to "New activity", "#{ current_user.id }/goal/#{ group.goal.id }/activities/new", class: "ui positive basic button" %>
-      </div>
+      <% if @is_my_page %>
+        <dir class="two wide column">
+          <%= link_to "New activity", "#{ current_user.id }/goal/#{ group.goal.id }/activities/new", class: "ui positive basic button" %>
+        </dir>
+      <% end %>
     <% end %>
-  </div>
+</div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="tab-lazy">
+  <% @late_goal.each do |goal| %>
+    <h3> <%= goal.description %> </h3>
+    <% unless goal.target == 0 %>
+      <% percent = goal.current_quantity.to_f/goal.target %>
+      <div class="ui teal progress" data-percent="<%= percent < 1 ? percent * 100 : 100 %>" id="goal-<%= goal.id %>">
+        <div class="bar"> </div>
+        <div class="label" > <%= percent * 100 %> % Earned</div>
+      </div>
+      <p>Start time <%= goal.created_at %></p>
+      <p>Deadline <%= goal.deadline %></p>
+      <p>Target <%= goal.target %></p>
+      <p>Current_quantity <%= goal.current_quantity %></p>
+      <p>RemaningTime/Remaining task <%= goal.percent_of_time %> / <%= goal.percent_of_quantity %> </p>
+    <% end %>
+  <% end %>
 </div>

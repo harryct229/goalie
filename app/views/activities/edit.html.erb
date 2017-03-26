@@ -4,4 +4,4 @@
 <%= render 'form', activity: @activity %>
 
 <%= link_to 'Show', user_goal_activity_path(@activity) %> |
-<%= link_to 'Back', user_goal_path(@goal) %>
+<%= link_to 'Back', user_path(current_user) %>
