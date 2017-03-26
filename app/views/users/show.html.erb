@@ -28,8 +28,16 @@
   </div>
 </div>
 <div class="ui bottom attached tab segment active" data-tab="tab-group">
-  <header>
+  <header style="margin-bottom: 20px;">
     <%= link_to "New group", new_group_path, class: "ui primary button" %>
+    <div id="group-search-wrapper">
+      <form action="/open_groups" method="GET">
+        <div class="ui input icon">
+          <input type="text" name="search" placeholder="Search open group" id="group-search-input">
+          <i class="search icon"></i>
+        </div>
+      </form>
+    </div>
   </header>
   <div class="ui grid">
     <% @group.each do |group| %>

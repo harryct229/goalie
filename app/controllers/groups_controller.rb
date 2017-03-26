@@ -7,6 +7,17 @@ class GroupsController < UserBaseController
     @groups = Group.all
   end
 
+  def show_open_groups
+    @open_groups = params["search"].present? ? OpenGroup.search_group(params["search"]): OpenGroup.all
+  end
+
+  def add_to_group
+    group = OpenGroup.find(params["id"])
+    group.users << current_user
+    group.save
+    render json: nil, status: 200
+  end
+
   # GET /groups/1
   # GET /groups/1.json
   def show
