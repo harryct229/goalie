@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p> Add for goal <%= @activity.goal.description %></p>
+<p> Goal_id <%= @activity.goal.id %></p>
+<p> Added by <%= @activity.goal.owner.owner_name %></p>
+<p> Created <%= @activity.created_at %></p>
+<p> Updated <%= @activity.updated_at %></p>
+
+<%= link_to 'Edit', edit_user_goal_activity_path(@activity) %> |
+<%= link_to 'Back', user_goal_activities_path(current_user) %>

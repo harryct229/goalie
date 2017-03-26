@@ -12,4 +12,11 @@ class Goal < ApplicationRecord
       transition :in_progress => :done
     end
   end
+  def recompute_current_quantity!
+    self.current_quantity = 0
+    activities.each do |activity|
+    	self.current_quantity += activity.quantity
+    end
+    self.save!
+  end
 end

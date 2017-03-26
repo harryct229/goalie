@@ -1,0 +1,7 @@
+<h1>Editing Activity</h1>
+<p> Add for <%= @goal.description %></p>
+
+<%= render 'form', activity: @activity %>
+
+<%= link_to 'Show', user_goal_activity_path(@activity) %> |
+<%= link_to 'Back', user_goal_path(@goal) %>

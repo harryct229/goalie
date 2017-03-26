@@ -3,4 +3,5 @@ class GroupGoal < Goal
     inverse_of: :goal
 
   validates :owner, presence: true
+
 end
