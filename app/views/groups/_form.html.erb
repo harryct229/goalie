@@ -1,20 +1,29 @@
-<%= simple_form_for(@group, as: :group, url: group_path(@group)) do |f| %>
-  <%= f.error_notification %>
+<div id="user-goal-form-wrapper">
+  <h3>Create new goal</h3>
+  <% url = @group.new_record? ? groups_path(@group) : group_path(@group) %>
+  <%= simple_form_for(@group, as: :group, url: url) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
+    <div class="form-inputs">
     <%= f.input :name, required: false %>
     <%= f.input :type, as: :boolean, label: "Is this closed group?", checked_value: "ClosedGroup", unchecked_value: "OpenGroup",
       required: false %>
 
-    <%= f.collection_check_boxes :user_ids, User.all, :id, :email %>
+    <%= f.collection_check_boxes :user_ids, User.all - [current_user], :id, :email, my_wrapper_tag: :div do |b| %>
+      <div class="ui checkbox">
+        <%= b.check_box %>
+        <label><%= b.object.email %></label>
+      </div>
+    <% end %>
     <%= f.simple_fields_for :goal do |f_g| %>
       <%= f_g.input :description, required: false %>
       <%= f_g.input :target, required: false %>
       <%= f_g.input :deadline, as: :datetime, html5: true, required: false %>
     <% end %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%=  link_to "Back", current_user, class: "ui button" %>
+      <%= f.button :submit, "Save" %>
+    </div>
+  <% end %>
+</div>

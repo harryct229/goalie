@@ -1,0 +1,25 @@
+<h3> <%= @goal.description %> </h3>
+<% unless @goal.target == 0 %>
+  <div class="ui teal progress" data-percent="<%= (@goal.current_quantity.to_f/@goal.target) * 100 %>" id="goal-<%= @goal.id %>">
+    <div class="bar"> </div>
+    <div class="label" > <%= (@goal.current_quantity.to_f/@goal.target) * 100 %> % Earned</div>
+  </div>
+<% end %>
+
+<div class="ui feed">
+  <% @activities.each do |activity| %>
+    <div class="event">
+      <div class="label">
+        <%= gravatar_for(activity.user, size: 80, wrapper_html: "ui avatar image", image_only: true) %>
+      </div>
+      <div class="content">
+        <div class="date">
+          <%= time_ago_in_words(activity.created_at) %>
+        </div>
+        <div class="summary">
+          <%= activity.user.fullname %> completed <%= activity.quantity %> in <%= @goal.target %> of <%= @goal.description %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

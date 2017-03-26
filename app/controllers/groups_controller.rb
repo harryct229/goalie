@@ -50,6 +50,12 @@ class GroupsController < UserBaseController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        user_ids = params[:group][:user_ids].reject(&:blank?)
+        user_ids.each do |user_id|
+          group_invitation = GroupInvitation.create! group: @group,
+            user_id: user_id, inviter: current_user
+          group_invitation.send_invitation
+        end
         format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
