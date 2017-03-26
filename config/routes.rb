@@ -13,7 +13,14 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  resources :groups, only: %i(show new edit create update)
+  resources :groups, only: %i(show new edit create update) do
+    member do
+      post "/add_to_group", to: "groups#add_to_group", as: "add_to"
+    end
+  end
+
+  get "/open_groups", to: "groups#show_open_groups"
+
   resources :group_invitations, only: %i() do
     member do
       get "confirm"
