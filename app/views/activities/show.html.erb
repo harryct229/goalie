@@ -7,4 +7,4 @@
 <p> Updated <%= @activity.updated_at %></p>
 
 <%= link_to 'Edit', edit_user_goal_activity_path(@activity) %> |
-<%= link_to 'Back', user_goal_activities_path(current_user) %>
+<%= link_to 'Back', user_path(current_user)  %>
