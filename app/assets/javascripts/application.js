@@ -15,3 +15,13 @@
 //= require turbolinks
 //= require_tree .
 //= require semantic-ui
+
+var ready;
+ready = function() {
+  $('.top.menu .item').tab();
+  $('.top.menu .item[data-tab="tab-private"]').click();
+  $('.ui.teal.progress').progress();
+};
+
+$(document).ready(ready);
+$(document).on('turbolinks:load', ready);

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-
   devise_for :users
 
-  root to: "top#index"  
+  root to: "top#index"
+  root to: "top#index"
+
   resources :users, only: "show" do
     resources :user_goals, as: "goal", path: "goal" do
       resources :activities
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
       get "confirm"
     end
   end
+  resources :goals, only: %i(show)
 end
